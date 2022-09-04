@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\AspNetCore\\GitProjectAspNetCore\\WebGentle.BookStore\\WebGentle.BookStore.csproj": {}
+    "C:\\Users\\mahesh.darapu\\OneDrive - ACS Solutions\\Documents\\GitHub\\AspNetCoreGitApp\\WebGentle.BookStore\\WebGentle.BookStore.csproj": {}
   },
   "projects": {
-    "D:\\AspNetCore\\GitProjectAspNetCore\\WebGentle.BookStore\\WebGentle.BookStore.csproj": {
+    "C:\\Users\\mahesh.darapu\\OneDrive - ACS Solutions\\Documents\\GitHub\\AspNetCoreGitApp\\WebGentle.BookStore\\WebGentle.BookStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AspNetCore\\GitProjectAspNetCore\\WebGentle.BookStore\\WebGentle.BookStore.csproj",
+        "projectUniqueName": "C:\\Users\\mahesh.darapu\\OneDrive - ACS Solutions\\Documents\\GitHub\\AspNetCoreGitApp\\WebGentle.BookStore\\WebGentle.BookStore.csproj",
         "projectName": "WebGentle.BookStore",
-        "projectPath": "D:\\AspNetCore\\GitProjectAspNetCore\\WebGentle.BookStore\\WebGentle.BookStore.csproj",
+        "projectPath": "C:\\Users\\mahesh.darapu\\OneDrive - ACS Solutions\\Documents\\GitHub\\AspNetCoreGitApp\\WebGentle.BookStore\\WebGentle.BookStore.csproj",
         "packagesPath": "C:\\Users\\mahesh.darapu\\.nuget\\packages\\",
-        "outputPath": "D:\\AspNetCore\\GitProjectAspNetCore\\WebGentle.BookStore\\obj\\",
+        "outputPath": "C:\\Users\\mahesh.darapu\\OneDrive - ACS Solutions\\Documents\\GitHub\\AspNetCoreGitApp\\WebGentle.BookStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mahesh.darapu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

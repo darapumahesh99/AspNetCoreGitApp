@@ -32,11 +32,17 @@ namespace WebGentle.BookStore
             }
 
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions()
+
+
+
+            // Folder other than wwwroot for static files
+            /*app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
                 RequestPath = "/MyStaticFiles"
-            });
+            });*/
+
+
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
