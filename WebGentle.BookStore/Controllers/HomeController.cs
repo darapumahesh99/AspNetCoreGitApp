@@ -8,9 +8,17 @@ namespace WebGentle.BookStore.Controllers
 {
     public class HomeController: Controller
     {
-        public string Index()
+        public ViewResult Index()
         {
-            return "In Controller";
+            //var obj = new { id = 1, name = "mahesh" };
+            //return View(obj);
+            //return View("~/TempView/TempVie.cshtml");
+            //return View("TempView/TempVie.cshtml");
+            return View(); //searching from root level
+        }
+        public ViewResult Temp()
+        {
+            return View();
         }
     }
 }
