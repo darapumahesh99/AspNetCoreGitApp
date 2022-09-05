@@ -16,7 +16,7 @@ namespace WebGentle.BookStore.Controllers
             //return View("TempView/TempVie.cshtml");
             return View(); //searching from root level
         }
-        public ViewResult Temp()
+        public ViewResult AboutUs()
         {
             return View();
         }

@@ -1,13 +1,5 @@
-﻿body {
-}
+﻿
 
-.logo{
-    height: 200px;
-    width: 200px;
-}
-
-.log {
-    height: 200px;
-    width: 200px;
-}
+.jumbotron {
+    background-color: aquamarine;
 }
