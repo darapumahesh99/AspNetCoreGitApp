@@ -8,5 +8,5 @@ step 1: right click on root project => select manage nuget package => select bro
                                                                                 #endif}
 
 
-# 05/09/2020: Making wen responsive 
+# 05/09/2020: Making web responsive 
              Header, footer, navbar, display model list data on view
