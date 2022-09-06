@@ -20,3 +20,14 @@ step 1: right click on root project => select manage nuget package => select bro
 # _viewStart file in Asp net core => 
 common code in views will be written here => if we don't want this common code in some views then override(Layout=null) in that particular view. 
 we can use different _viewstart files for different views
+
+# _viewImports file
+to import common libraries among views
+
+# viewBag
+=> used to pass data from action to view
+=> this type of data binding is known as loosely binding
+=> we can pass any type of data
+=> viewbag use dynamic property. Syntax: ViewBag.PropertyName = data; and use this in view as (@ViewBag.PropertyName)
+=> we can pass data in viewBag with or without model
+=> the scope of ViewBag is current action method to view
