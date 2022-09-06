@@ -17,3 +17,6 @@ step 1: right click on root project => select manage nuget package => select bro
 
 
 # 06/09/2022: 
+#_viewStart file in Asp net core => 
+common code in views will be written here => if we don't want this common code in some views then override(Layout=null) in that particular view. 
+we can use different _viewstart files for different views
