@@ -13,3 +13,7 @@ step 1: right click on root project => select manage nuget package => select bro
 # Section and RenderSection
  Header=> css => Body => Footer => Js
  If we write js code in view then it will not come in the above mentioned manner in layout. Section and RenderSection will Solve this problem.
+
+
+
+# 06/09/2022: 
