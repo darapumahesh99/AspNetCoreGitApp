@@ -25,9 +25,12 @@ we can use different _viewstart files for different views
 to import common libraries among views
 
 # viewBag
-=> used to pass data from action to view
+=> used to pass data from # action to view
 => this type of data binding is known as loosely binding
 => we can pass any type of data
 => viewbag use dynamic property. Syntax: ViewBag.PropertyName = data; and use this in view as (@ViewBag.PropertyName)
 => we can pass data in viewBag with or without model
 => the scope of ViewBag is current action method to view
+
+# 06/09/2022:
+# ViewData
