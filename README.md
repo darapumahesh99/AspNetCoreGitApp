@@ -24,6 +24,21 @@ we can use different _viewstart files for different views
 # _viewImports file
 to import common libraries among views
 
+# RenderSection
+RenderSection is a space with a specific name and it used on
+_Layout file.
+RenderSection tells the application that some other code
+(coming from view) will be placed here.
+
+# Section
+Section is used on Views.
+To create a section we use @section directive.
+Each section has a unique name and whatever we will write
+inside this section block that will replace the RenderSection
+(defined in _Layout file) with same name.
+
+
+
 # viewBag[used to pass data from [# action to view]
 
 => this type of data binding is known as loosely binding
@@ -42,6 +57,14 @@ to import common libraries among views
 [ViewData]
 public string Name{get;set;}
 
+{
+eg., [Viewpata]
+public string CustomProperty { get; set; }
+public ViewResult Index()
+{
+CustomProperty "Custom value";
+return View();
+}
 
 # Dynamic views
 # Advantages
@@ -137,3 +160,83 @@ Environments:
 names
 include
 exclude
+
+
+# 09/09/2022
+# Link tag helpers
+What is Link tag helper
+What problem does Link tag helper
+resolve
+How to use Link tag helper
+How fallback works
+
+# CDN (content delivery network) => loads the content based on the geographical location (bootstrap, jquery...)
+once the data loaded into browser will never hit the server, next time will get from browser cache
+
+
+# Link tag helper attributes (used in environment tag)
+href
+asp-fallback-href
+asp-fallback-test-class
+asp-fallback-test-property
+asp-fallback-test-value
+
+
+
+
+
+
+# Form tag helpers
+Form:
+=>A form is used to get data from user.
+=>A form has various input options for user to get data easily.
+=>Text box, Text Area, Calendar, Radio button, Checkbox
+=>Dropdown, Number, Email etc.
+# Form components
+Form tag
+Input elements
+Method
+Submit URL
+Submit button
+
+
+
+
+
+
+
+
+
+# Entity Framework Core
+EF Core is Microsoft's official technology to interact with
+relational database.
+EF Core can work with lots of databases.
+✓ Sql Server
+✓ MySQL
+✓ Cosmos db
+
+# Entity Framework Core features
+✓O/RM (object-relational mapper)
+✓ Open-source
+✓ Lightweight
+✓ Extensible
+✓ Support Async
+
+# O/RM
+✓ O/RM is a tool and is used to manage database data from an
+object-oriented perspective.
+✓ Database tables => Classes
+Column=> Properties
+To generate database tables or classes we can use either
+code first or database first approach
+
+# How EF Core work
+✓ EF Core works with the help of Model.
+✓ A model is made up of entity classes and a context object.
+
+
+# EF Core approach
+✓ Code first
+✓ Db first
+
+
