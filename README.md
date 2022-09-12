@@ -287,7 +287,7 @@ Microsoft.Entity FramerworkCore.Tools [next install this]
 # Server side (model) validation
 =>In asp.net core we use validations as attributes.
 =>These attributes are available in
-=>System.ComponenetModel.DataAnnotations
+=>[System.ComponenetModel.DataAnnotations]
 =>Using these attributes we can validate, set error message, set display label, Field type, etc. for a particular field
   
 # Server side (model) validation attributes
@@ -303,5 +303,5 @@ Microsoft.Entity FramerworkCore.Tools [next install this]
 ✓ Compare
 Phone
 
-  
-  
+# How to check the model validation
+=> ModelState.IsValid  
