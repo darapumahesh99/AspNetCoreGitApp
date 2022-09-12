@@ -261,4 +261,10 @@ Microsoft.Entity FramerworkCore.Tools [next install this]
 4) Create data base name. eg., public DbSet<Books> Books { get; set; }
 5) Add service in startUp class: services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.;Database=BookStore;Integrated Security=True;"));
   
-# Click on tools => Select Package Manager Console => enter get-help entityframework => enter "Add-Migration init" => enter "update-database" => see the migration table in SSMS (key)
+# Click on tools => 
+  Select Package Manager Console => enter get-help entityframework => enter "Add-Migration init" => enter "update-database" => see the migration table in SSMS (key).
+  
+# Generate DataBase using Entity framework core CLI
+
+
+  
