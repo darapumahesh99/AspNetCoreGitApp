@@ -265,6 +265,43 @@ Microsoft.Entity FramerworkCore.Tools [next install this]
   Select Package Manager Console => enter get-help entityframework => enter "Add-Migration init" => enter "update-database" => see the migration table in SSMS (key).
   
 # Generate DataBase using Entity framework core CLI
+=> after enter "Add-Migration init" => enter "update-database"
+=> see the changes in SSMS (we can also update table by adding new columns)
+  
+  
+# Add data in database using entity framework core
+1) open repository => 
+  
+# Making Async call using entity framework core 
+ => add async await in add new book
+  
+  
+  
+  
+# Model Validations
+# What is validation
+=> Validation is a process of checking an activity whether it meets the desired level of compliance.
+=> In Asp.Net core, validation is the process of checking fields of a form in order to meet the defined criteria.
 
+  
+# Server side (model) validation
+=>In asp.net core we use validations as attributes.
+=>These attributes are available in
+=>System.ComponenetModel.DataAnnotations
+=>Using these attributes we can validate, set error message, set display label, Field type, etc. for a particular field
+  
+# Server side (model) validation attributes
+✓ Required 
+✓ RegularExpression
+✓ EmailAddress 
+✓ Url
+✓Range(min, max) 
+✓ Remote
+✓ StringLength 
+✓ We can also create custom
+✓ Credit Card validation attributes
+✓ Compare
+Phone
 
+  
   
