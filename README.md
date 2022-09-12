@@ -239,4 +239,26 @@ code first or database first approach
 ✓ Code first
 ✓ Db first
 
+# 12/09/2022
+# Install Entity Framework Core in asp.net core application
+# Packages
+=> The global package for ef core is [Microsoft.Entity FrameworkCore]
+=> Based on the database we also need to install several other packages.
+ 
+# EF Core packages for Sql Server
+Microsoft.Entity FrameworkCore
+Micosoft.Entity FrameworkCore.Relational
+Microsoft.Entity FrameworkCore.SqlServer [ By installing this, the first two packages automatically installed]
+Microsoft.Entity FramerworkCore.Tools [next install this]
 
+# EF Core database provider
+=> https://docs.microsoft.com/en-us/ef/core/providers
+
+1) click on the above link and install package or from visual studio right click on project source explorer and select nuget package manager then install by searching 
+   "Microsoft.EntityFrameworkCore.SqlServer"
+2) create a class and then extend with DbContext 
+3) create a constructor eg., public BookStoreContext(DbContextOptions<BookStoreContext> options) : base(options){}
+4) Create data base name. eg., public DbSet<Books> Books { get; set; }
+5) Add service in startUp class: services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.;Database=BookStore;Integrated Security=True;"));
+  
+# Click on tools => Select Package Manager Console => enter get-help entityframework => enter "Add-Migration init" => enter "update-database" => see the migration table in SSMS (key)
