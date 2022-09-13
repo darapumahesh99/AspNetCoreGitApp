@@ -1,11 +1,4 @@
 ﻿
-@{
-    Layout = "_Layout";
-}
-
-
-
-
 
 @*<h1>@DateTime.Now</h1>
     <h1>sum = @(3+8)</h1>
@@ -66,11 +59,30 @@
 
 
 
-
-
+@*@{ 
+    ViewData["Title"] = "Index";
+}
+*@
 <section class="jumbotron text-center">
     <div class="container">
-        <h1>Welcome to the book store</h1>
+        <h1>Welcome to the book store @ViewData["property1"]</h1>
+
+        @*<environment names="Development">
+            <h1>Development</h1>
+        </environment>
+
+        <environment names="Production, Staging">
+            <h1>Production</h1>
+        </environment>*@
+
+        <environment include="Development">
+            <h1>Development</h1>
+        </environment>
+
+        <environment exclude="Development">
+            <h1>Production</h1>
+        </environment>
+
         <p class="lead text-muted">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -123,7 +135,7 @@
                         <p class="card-text">This section used to display desc of books</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary"> view details</a>
+                                <a asp-route="BookByID" class="btn btn-sm btn-outline-secondary"> view details</a>
                             </div>
                             <small class="text-muted">author name</small>
                         </div>

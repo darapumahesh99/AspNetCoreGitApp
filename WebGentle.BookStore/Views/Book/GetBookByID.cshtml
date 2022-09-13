@@ -1,10 +1,11 @@
-﻿
-@{
-    
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@*@{
+    ViewData["Title"] = "book detail "+ Model.book.Title;
+}*@
+@*@model BookModel*@
+
 
 <div class="container">
+    <h3 class="display-4">Book details @Model.Name</h3>
     <div class="row">
         <div class="col-md-6">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -15,13 +16,14 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="..." alt="First slide">
+
+                        <img class="d-block w-100" src="~/Images/book1.jpg" alt="First slide" asp-append-version="true">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Second slide">
+                        <img class="d-block w-100" src="~/Images/book2.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Third slide">
+                        <img class="d-block w-100" src="~/Images/book3.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -34,9 +36,65 @@
                 </a>
             </div>
         </div>
+
         <div class="col-md-6">
 
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.book.Title</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-secondary">By: </span>
+                    <span class="monospaced"> @Model.book.Author</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="description">@Model.book.Description</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="btn btn-outline-primary">
+                        read now
+                    </button>
+                </div>
+            </div><hr />
+
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Category- </span>@Model.book.Category</li>
+                <li class="list-group-item"><span class="font-weight-bold">Total Pages- </span>@Model.book.TotalPages</li>
+                <li class="list-group-item"><span class="font-weight-bold">Language- </span>@Model.book.Language</li>
+            </ul>
         </div>
     </div>
-</div>
+    <hr />
+    <div class="py-5 bg-light" id="similarBooks">
+        <div class="container">
+            <h1>Similar books</h1>
+            <div class="row">
+                @for (int i = 0; i <= 5; i++)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">thumbnail</text></svg>
+                            <div class="card-body">
+                                <p class="card-text">This section used to display desc of books</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-sm btn-outline-secondary"> view details</a>
+                                    </div>
+                                    <small class="text-muted">author name</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
+            </div>
+        </div>
+    </div>
 
