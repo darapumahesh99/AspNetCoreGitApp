@@ -331,3 +331,36 @@ Phone
 ✓ Select optional text
 ✓ Add HTML 5 validation
 ✓ Add server side validation
+
+# Drop down text and value
+=> the text in the value will be stored in the data base [<option value="hindihhtyhyh">Hindi(Indian)</option>]
+
+# Drop down with text and value using selectList
+var defaultBook = new BookModel()
+            {
+                Language = "1"
+            };
+
+            ViewBag.list = new SelectList(GetLanguages(), "Id", "Text");
+            
+            
+            
+            
+            
+# Using Select List Item and text and value
+var defaultBook = new BookModel()
+            {
+                Language = "3"
+            };
+
+            ViewBag.list = GetLanguages().Select(x => new SelectListItem()
+            {
+                Text = x.Text,
+                Value = x.Id.ToString()
+            });
+            
+            
+            
+            
+#
+
