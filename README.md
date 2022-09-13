@@ -305,3 +305,29 @@ Phone
 
 # How to check the model validation
 => ModelState.IsValid  
+
+
+
+# 13/09/2022
+
+# Validation summary
+=> Validation summary tag helper is used to display a summary of validation messages.
+=> We use asp-validation-summary attribute to display validation summary
+✓ asp-validation-summary is used with div tag.
+
+# Validation summary attribute value
+✓ All => to get error msg without custom messages
+✓ ModelOnly => only custom messages will be displayed
+✓ None => no validation summary error messages will be displayed
+
+# Data type attribute 
+# Attribute
+✓ DataType(DataType.NameOfProperty)
+
+# Dropdown
+=> Create dropdown using Hardcoded values
+=> Pass data from view to controller
+✓ Default selected value
+✓ Select optional text
+✓ Add HTML 5 validation
+✓ Add server side validation
