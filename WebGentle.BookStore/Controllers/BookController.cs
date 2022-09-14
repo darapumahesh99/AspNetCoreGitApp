@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -14,9 +15,11 @@ namespace WebGentle.BookStore.Controllers
         [ViewData]
         public string Title { get; set; }
         private readonly BookRepository _bookRepository = null;
-        public BookController(BookRepository bookRepository)
+        private readonly LanguageRepository _languageRepository = null;
+        public BookController(BookRepository bookRepository, LanguageRepository languageRepository)
         {
             _bookRepository = bookRepository;
+            _languageRepository = languageRepository;
         }
         public async Task<ViewResult> GetAllBooks()
         {
@@ -46,12 +49,15 @@ namespace WebGentle.BookStore.Controllers
             return _bookRepository.SearchBook(name, authorName);
         }
 
-        public ViewResult AddNewBook(bool isSuccess = false, int bookID = 0)
+        public async Task<ViewResult> AddNewBook(bool isSuccess = false, int bookID = 0)
         {
             var defaultBook = new BookModel()
             {
-                Language = "English"
+                //Language = "English"
             };
+
+            ViewBag.language = new SelectList(await _languageRepository.GetLanguages(), "ID", "Name");
+
             ViewBag.IsSuccess = isSuccess;
             ViewBag.BookID = bookID;
             Title = "AddNewBook";
@@ -69,6 +75,9 @@ namespace WebGentle.BookStore.Controllers
                     return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookID = id });
                 }
             }
+
+            ViewBag.language = new SelectList(await _languageRepository.GetLanguages(), "ID", "Name");
+
             ModelState.AddModelError("", "This is my custom error message");
             return View();
         }

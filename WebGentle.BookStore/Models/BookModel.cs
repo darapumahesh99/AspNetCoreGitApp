@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
+using WebGentle.BookStore.Data;
 
 namespace WebGentle.BookStore.Models
 {
@@ -14,10 +14,10 @@ namespace WebGentle.BookStore.Models
         /*[DataType(DataType.Password)]*/
         /*[DataType(DataType.Currency)]*/
         /*[DataType(DataType.Upload)]*/
-        [DataType(DataType.EmailAddress)]
+        /*[DataType(DataType.EmailAddress)]
         [Display(Name="DateTime")]
-        [EmailAddress]
-        public string myField { get; set; }
+        [EmailAddress]*/
+        /*public string myField { get; set; }*/
         public int Id { get; set; }
         
         [StringLength(100, MinimumLength =5)]
@@ -34,7 +34,8 @@ namespace WebGentle.BookStore.Models
         public string TotalPages { get; set; }
 
         [Required(ErrorMessage ="This field is required")]
-        public string Language { get; set; }
+        public int LanguageID { get; set; }
+        public Language Language { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
     }

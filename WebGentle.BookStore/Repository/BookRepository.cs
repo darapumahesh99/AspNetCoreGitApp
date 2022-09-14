@@ -23,7 +23,8 @@ namespace WebGentle.BookStore.Repository
                 CreatedOn = DateTime.UtcNow,
                 Description = model. Description,
                 Title = model.Title,
-                Language = model.Language,
+                LanguageID = model.LanguageID,
+                
                 TotalPages = model.TotalPages,
                 UpdatedOn = DateTime.UtcNow
             };
@@ -48,7 +49,8 @@ namespace WebGentle.BookStore.Repository
                         Category = book.Category,
                         Description = book.Description,
                         Id = book.Id,
-                        Language = book.Language,
+                        LanguageID = book.LanguageID,
+                        
                         Title = book.Title,
                         TotalPages = book.TotalPages
                     });
@@ -67,7 +69,8 @@ namespace WebGentle.BookStore.Repository
                     Category = book.Category,
                     Description = book.Description,
                     Id = book.Id,
-                    Language = book.Language,
+                    LanguageID = book.LanguageID,
+                    
                     Title = book.Title,
                     TotalPages = book.TotalPages
                 };
@@ -77,10 +80,10 @@ namespace WebGentle.BookStore.Repository
         }
         public List<BookModel> SearchBook(string title, string authorName)
         {
-            return DataSource().Where(x => (x.Title.Contains(title) && x.Author.Contains(authorName))).ToList();
+            return null;
         }
 
-        private List<BookModel> DataSource()
+        /*private List<BookModel> DataSource()
         {
             return new List<BookModel>()
             {
@@ -90,6 +93,6 @@ namespace WebGentle.BookStore.Repository
                 new BookModel(){Id=4, Title="d", Author="Mahi", Description="Description for d", Category="romance", Language="English", TotalPages="310"},
                 new BookModel(){Id=4, Title="e", Author="Mahi", Description="Description for e", Category="Action", Language="English", TotalPages="529"}
             };
-        }
+        }*/
     }
 }
