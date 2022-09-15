@@ -367,3 +367,51 @@ var defaultBook = new BookModel()
 # Dropdown using Enum
 #
 
+
+
+
+
+
+
+
+
+# Custom Validation Attribute
+
+public class MyCustomValidationAttribute: ValidationAttribute
+    {
+        public MyCustomValidationAttribute(string text)
+        {
+            Text = text;
+        }
+        public string Text { get; set; }
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value != null)
+            {
+                string bookName = value.ToString();
+                if (bookName.Contains(Text))
+                {
+                    return ValidationResult.Success;
+                }
+            }
+            return new ValidationResult(ErrorMessage ?? "Book name does not contain desired value");
+        }
+    }
+
+Usage: [MyCustomValidationAttribute(text, errorMessage)]
+
+
+# Custom Tag Helper
+
+public class CustomEmailTagHelper : TagHelper
+    {
+        public string MyEmail { get; set; }
+        public override void Process(TagHelperContext context, TagHelperOutput output)
+        {
+            output.TagName = "a";
+            output.Attributes.SetAttribute("href", $"mailTo:{MyEmail}");
+            output.Attributes.Add("id", "my-email-id");
+            output.Content.SetContent("my-email");
+        }
+    }
+    
