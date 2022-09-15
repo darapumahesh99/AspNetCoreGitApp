@@ -60,24 +60,21 @@ namespace WebGentle.BookStore.Repository
         }
         public async Task<BookModel> GetBookByID(int id)
         {
-            var book = await _context.Books.FindAsync(id);
-            if (book != null)
+            return await _context.Books.Where(x => x.Id == id).Select(book => new BookModel()
             {
-                var bookDetails = new BookModel()
-                {
-                    Author = book.Author,
-                    Category = book.Category,
-                    Description = book.Description,
-                    Id = book.Id,
-                    LanguageID = book.LanguageID,
-                    
-                    Title = book.Title,
-                    TotalPages = book.TotalPages
-                };
-                return bookDetails;
+                Author = book.Author,
+                Category = book.Category,
+                Description = book.Description,
+                Id = book.Id,
+                LanguageID = book.LanguageID,
+
+                Title = book.Title,
+                TotalPages = book.TotalPages
+            }).FirstOrDefaultAsync();
+            
             }
-            return null;
-        }
+            
+        
         public List<BookModel> SearchBook(string title, string authorName)
         {
             return null;
