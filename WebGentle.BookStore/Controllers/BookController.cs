@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebGentle.BookStore.Models;
@@ -10,17 +13,25 @@ using WebGentle.BookStore.Repository;
 
 namespace WebGentle.BookStore.Controllers
 {
+
+    
+    [Route("[controller]/[action]")]
     public class BookController : Controller
     {
         [ViewData]
         public string Title { get; set; }
-        private readonly BookRepository _bookRepository = null;
-        private readonly LanguageRepository _languageRepository = null;
-        public BookController(BookRepository bookRepository, LanguageRepository languageRepository)
+        private readonly IBookRepository _bookRepository = null;
+        private readonly ILanguageRepository _languageRepository = null;
+        private readonly IWebHostEnvironment _webHostEnvironment = null;
+        public BookController(IBookRepository bookRepository, ILanguageRepository languageRepository,
+            IWebHostEnvironment webHostEnvironment)
         {
             _bookRepository = bookRepository;
             _languageRepository = languageRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
+
+
         public async Task<ViewResult> GetAllBooks()
         {
             Title = "All Books";
@@ -28,7 +39,7 @@ namespace WebGentle.BookStore.Controllers
             return View(allBooks);
         }
 
-        [Route("book-detail/{id}", Name ="BookByID")]
+        [Route("~/book-detail/{id}", Name ="BookByID")]
         public async Task<ViewResult> GetBookByID(int id)
         {
             
@@ -56,7 +67,9 @@ namespace WebGentle.BookStore.Controllers
                 //Language = "English"
             };
 
-            ViewBag.language = new SelectList(await _languageRepository.GetLanguages(), "ID", "Name");
+
+            // alternative for below is directly getting data from languageRepo: See in views
+            /*ViewBag.language = new SelectList(await _languageRepository.GetLanguages(), "ID", "Name");*/
 
             ViewBag.IsSuccess = isSuccess;
             ViewBag.BookID = bookID;
@@ -67,6 +80,43 @@ namespace WebGentle.BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
+            if(bookModel.CoverPhoto != null)
+            {
+                // Guid to make the image name unique
+                string folder = "books/cover/";
+                bookModel.CoverImageUrl = await UploadImage(folder, bookModel.CoverPhoto);
+                
+            }
+
+            if (bookModel.PdfFile != null)
+            {
+                // Guid to make the image name unique
+                string folder = "books/pdf/";
+                bookModel.PdfFileUrl = await UploadImage(folder, bookModel.PdfFile);
+
+            }
+
+
+            if (bookModel.GalleryFiles != null)
+            {
+                // Guid to make the image name unique
+                string folder = "books/gallery/";
+                bookModel.Gallery = new List<GalleryModel>();
+                foreach (var file in bookModel.GalleryFiles)
+                {
+                    var gallery = new GalleryModel()
+                    {
+                        Name = file.FileName,
+                        Url= await UploadImage(folder, file)
+                };
+                    bookModel.Gallery.Add(gallery);
+                }
+
+            }
+
+            // to check errors
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+
             if (ModelState.IsValid)
             {
                 int id = await _bookRepository.AddNewBook(bookModel);
@@ -76,10 +126,23 @@ namespace WebGentle.BookStore.Controllers
                 }
             }
 
-            ViewBag.language = new SelectList(await _languageRepository.GetLanguages(), "ID", "Name");
+            
 
             ModelState.AddModelError("", "This is my custom error message");
             return View();
         }
+
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
+        {
+            
+            folderPath +=  Guid.NewGuid().ToString() +"_"+ file.FileName;
+
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+            return "/" + folderPath;
+        }
+
+        
     }
 }

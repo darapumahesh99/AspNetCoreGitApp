@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,14 @@ using WebGentle.BookStore.Models;
 
 namespace WebGentle.BookStore.Repository
 {
-    public class BookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly BookStoreContext _context = null;
-        public BookRepository(BookStoreContext context)
+        private readonly IConfiguration configuration = null;
+        public BookRepository(BookStoreContext context, IConfiguration configuration)
         {
             _context = context;
+            this.configuration = configuration;
         }
         public async Task<int> AddNewBook(BookModel model)
         {
@@ -21,19 +24,31 @@ namespace WebGentle.BookStore.Repository
             {
                 Author = model.Author,
                 CreatedOn = DateTime.UtcNow,
-                Description = model. Description,
+                Description = model.Description,
                 Title = model.Title,
                 LanguageID = model.LanguageID,
-                
+
                 TotalPages = model.TotalPages,
+                CoverImageUrl = model.CoverImageUrl,
+                PdfFileUrl = model.PdfFileUrl,
                 UpdatedOn = DateTime.UtcNow
             };
+
+            newBook.bookGallery = new List<BookGallery>();
+            foreach (var file in model.Gallery)
+            {
+                newBook.bookGallery.Add(new BookGallery()
+                {
+                    Name = file.Name,
+                    Url = file.Url
+                });
+            }
 
             await _context.Books.AddAsync(newBook);
 
             await _context.SaveChangesAsync();
 
-           return newBook.Id;
+            return newBook.Id;
         }
         public async Task<List<BookModel>> GetAllBooks()
         {
@@ -50,13 +65,34 @@ namespace WebGentle.BookStore.Repository
                         Description = book.Description,
                         Id = book.Id,
                         LanguageID = book.LanguageID,
-                        
+
                         Title = book.Title,
-                        TotalPages = book.TotalPages
+                        TotalPages = book.TotalPages,
+                        CoverImageUrl = book.CoverImageUrl,
+                        PdfFileUrl = book.PdfFileUrl
                     });
                 }
             }
             return books;
+        }
+
+        public async Task<List<BookModel>> GetTopBooksAsync(int count)
+        {
+            return await _context.Books.Select(book => new BookModel()
+            {
+                Author = book.Author,
+                Category = book.Category,
+                Description = book.Description,
+                Id = book.Id,
+                LanguageID = book.LanguageID,
+
+                Title = book.Title,
+                TotalPages = book.TotalPages,
+                CoverImageUrl = book.CoverImageUrl,
+                PdfFileUrl = book.PdfFileUrl
+            }).Take(count).ToListAsync();
+
+
         }
         public async Task<BookModel> GetBookByID(int id)
         {
@@ -69,12 +105,21 @@ namespace WebGentle.BookStore.Repository
                 LanguageID = book.LanguageID,
 
                 Title = book.Title,
-                TotalPages = book.TotalPages
+                TotalPages = book.TotalPages,
+                CoverImageUrl = book.CoverImageUrl,
+                Gallery = book.bookGallery.Select(g => new GalleryModel()
+                {
+                    ID = g.ID,
+                    Name = g.Name,
+                    Url = g.Url
+                }).ToList(),
+                PdfFileUrl = book.PdfFileUrl
+
             }).FirstOrDefaultAsync();
-            
-            }
-            
-        
+
+        }
+
+
         public List<BookModel> SearchBook(string title, string authorName)
         {
             return null;
@@ -91,5 +136,10 @@ namespace WebGentle.BookStore.Repository
                 new BookModel(){Id=4, Title="e", Author="Mahi", Description="Description for e", Category="Action", Language="English", TotalPages="529"}
             };
         }*/
+        public string GetAppName()
+        {
+            return configuration["AppName"] + configuration.GetValue<bool>("Boolean");
+        }
+
     }
 }

@@ -1,0 +1,44 @@
+﻿@inject WebGentle.BookStore.Repository.IBookRepository _bookRepo
+
+
+
+<header>
+    <div class="container">
+        <h2>@_bookRepo.GetAppName()</h2>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            @*<big>Top Books</big>
+                <p big="">Books are top</p>*@
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="home" asp-action="index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="home" asp-action="AboutUs">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="book" asp-action="getAllBooks">All books</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="book" asp-action="getAllBooks" asp-protocol="http" asp-host="wikipedia.com">New Link</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="book" asp-action="AddNewBook">Add New Book</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+    </div>
+</header>

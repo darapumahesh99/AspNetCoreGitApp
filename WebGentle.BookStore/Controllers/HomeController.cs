@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebGentle.BookStore.Controllers
 {
+    
+    [Route("[controller]/[action]")]
     public class HomeController: Controller
     {
         [ViewData]
@@ -13,6 +15,8 @@ namespace WebGentle.BookStore.Controllers
 
         [ViewData]
         public string Property { get; set; }
+
+        [Route("~/")]
         public ViewResult Index()
         {
             //var obj = new { id = 1, name = "mahesh" };
@@ -25,10 +29,25 @@ namespace WebGentle.BookStore.Controllers
             Property = "Mahesh Darapu";
             return View(); //searching from root level
         }
-        public ViewResult AboutUs()
+
+        [Route("about-us/{name:alpha:minlength(5)}")]
+        //[Route("about-us/{id:int:min(1)}")]
+        public ViewResult AboutUs(string name)
         {
             Title = "About Us";
             return View();
         }
+
+        /*[Route("test1/a{a}")]
+        public ViewResult Test1(string a)
+        {
+            return View();
+        }
+
+        [Route("test2/b{a}")]
+        public ViewResult Test2(string a)
+        {
+            return View();
+        }*/
     }
 }
