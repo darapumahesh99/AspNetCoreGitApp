@@ -575,4 +575,33 @@ ex
   =>IOptionsMonitor     yes                 yes         yes
   
   
-# 
+
+  
+  
+  
+  
+  
+  
+  
+  
+# Identity Core
+  => it is a universal framework which provides security to ant dot net app
+  => not only limited to signup/sign in
+  
+# Identity core feature: common framework for all dot net apps
+  => all required tables
+  => register
+  => login
+  => forgot password(reset)
+  => change password
+  => user validation
+  => password validation
+  => password hashing
+  => multi factor authentication
+  => Lockout
+  => External identity(login from google, fb, insta...)
+  
+# Install identity core
+  =>Microsoft.AspNetCore.Identity.EntityFramework
+  => enable authentication=> app.UseAuthentication(); & services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<BookStoreContext "DBContextName">();
+  => now replace DBContext with IdentityDbContext
