@@ -605,3 +605,4 @@ ex
   =>Microsoft.AspNetCore.Identity.EntityFramework
   => enable authentication=> app.UseAuthentication(); & services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<BookStoreContext "DBContextName">();
   => now replace DBContext with IdentityDbContext
+  => add-migration and update-database to see changes
