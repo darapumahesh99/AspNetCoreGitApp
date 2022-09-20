@@ -556,3 +556,23 @@ ex
 # appsettingsJson
   => to get boolean value without type casting:  {configuration.GetValue<bool>("Boolean")}
   => getValue and getSection methods to retrieve data from configuration
+
+  
+  
+# (#85) Binding Configuration to objects using Bind method
+  => create a type of configuration object in a model
+  => bind config objects and the model class object
+  
+# (#86) Read configuration using option pattern (IOptions) from appsettings => very widely used concept in ASP.Net Core => singleton type
+# (#87) Reloading configuration using IOptionsSnapshot() in asp.net core => scoped type 
+# Reload configuration in singleton service using IOptionsMonitor<>
+# (#89) Named options in asp.net core | Map multiple configurations to single model 
+  => whenever we use scoped service inside singleton service then use IOptionsMonitor<>
+  
+#                   use in singleton    Reloading   NamedOptions
+  =>IOptions            yes                 No          No
+  =>IOptionsSnapshot    No                  yes         yes
+  =>IOptionsMonitor     yes                 yes         yes
+  
+  
+# 
