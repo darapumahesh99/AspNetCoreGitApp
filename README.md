@@ -555,3 +555,4 @@ ex
   
 # appsettingsJson
   => to get boolean value without type casting:  {configuration.GetValue<bool>("Boolean")}
+  => getValue and getSection methods to retrieve data from configuration
