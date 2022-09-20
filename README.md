@@ -417,3 +417,125 @@ public class CustomEmailTagHelper : TagHelper
     
 # upload images
 # upload multiple images
+
+  
+# 19/09/2022
+# Upload pdf
+  
+  
+# Partial Views
+What are partial views
+How to create partial view
+How to use partial view
+How to pass data (Model) partial view
+async partial view
+  
+# Partial view
+✓ Partial view is a .cshtml (Razor markup) file that is used to render
+content(html)within other view file output.
+In general Partial view is normal cshtml file but the way we use
+them in other views, that makes them special.  
+
+# When to use partial view
+✓ Remove duplicate Razor content from application.
+✓Break up large view file into small components.
+  
+  
+# When not to use partial view
+✓ If you need to write complex code or call your controller to get
+the data and render razor markup.
+✓ Rather use view component (This is a new feature introduced in
+asp.net core)
+  
+# Render a partial view on another view
+✓ Tag helper
+1. Partial tag helper i.e., <partial name="_Header"/>
+✓ HTML helper
+1. Partial
+2. PartialAsync
+3. RenderPartial
+4. RenderPartialAsync 
+  
+# (#72) Partial tag helper vs Partial vs PartialAsync vs RenderPartial vs RenderPartialAsync
+  
+# Different ways to render a partial view on main view
+# Partial tag helper ==> it is best and asynchronous
+✓ @Html.Partial()
+✓ @Html.PartialAsync()
+✓ @Html.RenderPartial() ==> return type VOID
+✓ @Html.RenderPartialAsync() ==> return type VOID
+ 
+  
+  
+# (#73) View Components in asp.net core
+ What is a view component in asp.net core
+Where can we use a ViewComponent
+✓ How to create a view component
+How to use ViewComponent on a view file
+  
+# View Component
+=> ViewComponent is a special feature that is used to render some data (view +data) on a view file without actually being the part of Http life cycle.
+=> ViewComponets are used for internal purposes.
+  
+# Where can we use View Component
+✓ Dynamic navigation menu (Based on role etc)
+✓ Get some related data for a page.
+Like: Related post, related books etc. Shopping cart
+✓ Content visible on side of page
+  
+# File location for View Component
+✓ C#file:Anywhere in the solution. We generally put them in aseparate folder.
+✓ View file:
+/Views/{Controller Name}/Components/{View Component Name}/{View Name}
+/Views/Shared/Components/{View Component Name}/{View Name}
+/Pages/Shared/Components/{View Component Name}/{View Name}
+  
+# How to use a View Component on view
+@await Component.InvokeAsync("Name of view component", {Anonymous Type Containing Parameters})
+ex: @await Component.InvokeAsync("RelatedBooks", new {bookld=4,isSort=true})
+  
+  
+# How to use a View Component on view
+<vc:[view-component-name] parameter1="parameter1 value" parameter2="parameter2 value">
+</vc:[view-component-name]>
+ex
+<vc:related-books book-id="2" is-sort="false">
+</vc:related-books>
+  
+  
+  
+# (#74) How to get data from database and use in View Component in asp.net core
+# (#75) How to pass parameters in view components in asp.net core 
+
+  
+# Routing
+✓ Routing is the process of mapping incoming http request (URL) to a particular resource (i.e. controller and action method).
+=> We can define a unique URL(route) for each resource.
+  
+# How to enable routing
+✓ In Asp.net core, we can enable routing through middleware
+✓ We need to use following 2 middleware:
+✓ UseRouting()
+=> UseEndpoints()
+  
+# types of routing
+  => Conventional routing
+  => Attribute routing
+# Important points
+  => all the routs should be unique with url + http
+  => we can define multiple routs for one resource
+  => we can not define same route for multiple resource
+  
+  
+# (#77) Attribute routing in asp.net core
+  => token passing = Route("[controller]/[action]")
+  
+  
+# routing constraints
+  => Type
+  => Length
+  => Alpha
+  => Regex
+  => Required etc.,
+  
+  
