@@ -538,4 +538,20 @@ ex
   => Regex
   => Required etc.,
   
+ # dependency injection
+  => constructor level
+  => method level
+  => property level
   
+  In order to create interfaces, right click on class after quick actions and refractorings then extract interface.
+  
+  # Benefits of DI
+✓ Loosely coupling between controller and repository.
+✓ Controller does not create the instance of repository rather it is created by DI container.
+=> Controller does not define the implementation of repository.
+=> Only the interface of this repository is used in the controller.
+=> This makes easy to change the implementation of repo without modifying the controller class.
+
+  
+# appsettingsJson
+  => to get boolean value without type casting:  {configuration.GetValue<bool>("Boolean")}
