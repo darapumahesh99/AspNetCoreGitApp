@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,26 +13,34 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebGentle.BookStore.Data;
+using WebGentle.BookStore.Models;
 using WebGentle.BookStore.Repository;
 
 namespace WebGentle.BookStore
 {
     public class Startup
     {
-        public readonly IConfiguration configuration = null;
+        public readonly IConfiguration _configuration = null;
         public Startup(IConfiguration configuration)
         {
-            this.configuration = configuration;
+            _configuration = configuration;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=GGKU4DELL1375" + @"\" + "SQLEXPRESS; Database=BookStore; Integrated Security=True;"));
-            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.Configure<NewBookAlert>(_configuration.GetSection("NewBookAlert"));
+            services.AddSingleton <IMessageRepository, MessageRepository>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<BookStoreContext>();
+            
+            // gives minimal functionLITY
+            /*services.AddIdentityCore<>*/
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation().AddViewOptions(options => {
 

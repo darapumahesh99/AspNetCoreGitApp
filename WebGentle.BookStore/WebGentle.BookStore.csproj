@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="5.2.0" />
+    <PackageReference Include="jQuery.Validation" Version="1.17.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
@@ -17,9 +20,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Twitter.Bootstrap" Version="3.0.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\books\cover\" />
+    <Folder Include="wwwroot\books\gallery\" />
+    <Folder Include="wwwroot\books\pdf\" />
     <Folder Include="wwwroot\Images\" />
     <Folder Include="wwwroot\Js\" />
   </ItemGroup>

@@ -1,4 +1,8 @@
-﻿@inject WebGentle.BookStore.Repository.IBookRepository _bookRepo
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration configuration
+
+@inject WebGentle.BookStore.Repository.IBookRepository _bookRepo
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<NewBookAlert> _newBookAlertConfiguration
 
 
 
@@ -8,7 +12,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             @*<big>Top Books</big>
-                <p big="">Books are top</p>*@
+            <p big="">Books are top</p>*@
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,6 +43,11 @@
 
             </div>
         </nav>
+        @if(_newBookAlertConfiguration.Value.DisplayBookAlert){
+        <div class="alert alert-info" role="alert">
+            @(_newBookAlertConfiguration.Value.BookName)
+        </div>
+        }
 
     </div>
 </header>
