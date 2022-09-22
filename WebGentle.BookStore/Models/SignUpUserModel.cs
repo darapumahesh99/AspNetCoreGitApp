@@ -8,6 +8,10 @@ namespace WebGentle.BookStore.Models
 {
     public class SignUpUserModel
     {
+        [Required(ErrorMessage ="enter your first name")]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         [Required(ErrorMessage ="Enter your email")]
         [Display(Name ="Email")]
         [EmailAddress(ErrorMessage ="please enter valid emai")]
@@ -19,7 +23,7 @@ namespace WebGentle.BookStore.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Enter your Confirm Password")]
+        [Required(ErrorMessage = "Confirm your Password")]
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }

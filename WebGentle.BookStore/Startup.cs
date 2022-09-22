@@ -36,8 +36,22 @@ namespace WebGentle.BookStore
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.Configure<NewBookAlert>(_configuration.GetSection("NewBookAlert"));
             services.AddSingleton <IMessageRepository, MessageRepository>();
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<BookStoreContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/login";
+            });
+
+            services.AddScoped<IAccountRepository, AccountRepository>();
             
             // gives minimal functionLITY
             /*services.AddIdentityCore<>*/

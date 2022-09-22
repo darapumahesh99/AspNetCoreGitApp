@@ -19,7 +19,10 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
                 <ul class="navbar-nav mr-auto">
+
                     <li class="nav-item active">
                         <a class="nav-link" asp-controller="home" asp-action="index">Home</a>
                     </li>
@@ -40,6 +43,10 @@
                     </li>
 
                 </ul>
+
+               <ul class="navbar-nav">
+                   <partial name="_LoginInfo"/>
+               </ul>
 
             </div>
         </nav>
